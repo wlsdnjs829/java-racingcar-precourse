@@ -19,11 +19,11 @@ public final class GameView {
     }
 
     public static void printEnterCarNames() {
-        out.print(ENTER_CAR_NAMES);
+        out.println(ENTER_CAR_NAMES);
     }
 
     public static void printEnterTryNumber() {
-        out.print(ENTER_TRY_NUMBER);
+        out.println(ENTER_TRY_NUMBER);
     }
 
     public static void printStartMessage() {

@@ -4,15 +4,43 @@ import racingcar.model.Car;
 import racingcar.model.Move;
 import racingcar.model.RacingCars;
 import racingcar.utils.CarGeneratorUtils;
+import racingcar.view.GameView;
 
 import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        final List<Car> cars = CarGeneratorUtils.getCars("이런,안돼,중복,한다");
-        final RacingCars racingCars = new RacingCars(cars);
-        final Move move = new Move("5");
-        RacingGame racingGame = new RacingGame(racingCars, move);
+        RacingGame racingGame = getRacingGame();
         racingGame.start();
     }
+
+    private static RacingGame getRacingGame() {
+        final List<Car> cars = getCarNamesReEnterIfIllegalArgumentException();
+        final RacingCars racingCars = new RacingCars(cars);
+        final Move move = getMoveReEnterIfIllegalArgumentException();
+        return new RacingGame(racingCars, move);
+    }
+
+    private static List<Car> getCarNamesReEnterIfIllegalArgumentException() {
+        try {
+            GameView.printEnterCarNames();
+            final String carNames = GameView.enterMessage();
+            return CarGeneratorUtils.getCars(carNames);
+        } catch (IllegalArgumentException e) {
+            GameView.printMessage(e.getMessage());
+            return getCarNamesReEnterIfIllegalArgumentException();
+        }
+    }
+
+    private static Move getMoveReEnterIfIllegalArgumentException() {
+        try {
+            GameView.printEnterTryNumber();
+            final String moves = GameView.enterMessage();
+            return new Move(moves);
+        } catch (IllegalArgumentException e) {
+            GameView.printMessage(e.getMessage());
+            return getMoveReEnterIfIllegalArgumentException();
+        }
+    }
+
 }
