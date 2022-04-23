@@ -7,30 +7,28 @@ public class FinalChampionshipCar {
 
     private static final String REST_SPACE = ", ";
 
-    private final AtomicInteger topDistance;
-    private final Map<String, Integer> distanceByName;
     private final StringBuilder builder;
+    private final Map<String, Integer> distanceByName;
+    private final AtomicInteger topDistance;
 
     public FinalChampionshipCar(AtomicInteger topDistance, Map<String, Integer> distanceByName) {
-        this.topDistance = topDistance;
-        this.distanceByName = distanceByName;
         this.builder = new StringBuilder();
+        this.distanceByName = distanceByName;
+        this.topDistance = topDistance;
     }
 
     public String getFinalChampionshipCarNames() {
-        final int topDistanceCount = topDistance.get();
-
         for (Map.Entry<String, Integer> entry : distanceByName.entrySet()) {
             final String carName = entry.getKey();
             final int count = entry.getValue();
-            appendCarName(topDistanceCount, count, carName);
+            appendCarName(count, carName);
         }
 
         return builder.toString();
     }
 
-    private void appendCarName(int topDistanceCount, int count, String carName) {
-        if (topDistanceCount > count) {
+    private void appendCarName(int count, String carName) {
+        if (topDistance.get() > count) {
             return;
         }
 

@@ -1,7 +1,7 @@
 package racingcar.model;
 
-import racingcar.enums.MoveStatus;
 import racingcar.constants.ErrorMessage;
+import racingcar.enums.MoveStatus;
 import racingcar.utils.ValidationUtils;
 
 import java.util.HashMap;
@@ -34,10 +34,6 @@ public class Move {
         ValidationUtils.validConditionThrowIfTrue(
                 parseMoves < LEAST_RANGE, ErrorMessage.MOVE_MUST_BE_ALLOWED_INT);
         return parseMoves;
-    }
-
-    public int remainMoves() {
-        return moves;
     }
 
     public boolean immovable() {
@@ -74,6 +70,10 @@ public class Move {
         }
 
         return MoveStatus.MOVE;
+    }
+
+    public int remainMoves() {
+        return moves;
     }
 
 }

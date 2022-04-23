@@ -1,20 +1,22 @@
 package racingcar.model;
 
-import racingcar.enums.MoveStatus;
 import racingcar.constants.ErrorMessage;
+import racingcar.enums.MoveStatus;
 import racingcar.utils.ValidationUtils;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Car {
 
-    private static final int ZERO = 0;
     private static final String DASH = "-";
+    private static final int ZERO = 0;
 
-    private final CarName name;
     private final CarDistance distance;
+    private final CarName name;
 
     public Car(CarName name) {
-        this.name = name;
         this.distance = new CarDistance(ZERO);
+        this.name = name;
     }
 
     public String carName() {
@@ -34,8 +36,9 @@ public class Car {
 
     public String getDistanceDash() {
         final StringBuilder builder = new StringBuilder();
+        final int distanceCount = this.distance.getDistance();
 
-        for (int repeat = 0; repeat < distance.getDistance(); repeat++) {
+        for (AtomicInteger repeat = new AtomicInteger(); repeat.get() < distanceCount; repeat.getAndIncrement()) {
             builder.append(DASH);
         }
 

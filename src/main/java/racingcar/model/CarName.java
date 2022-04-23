@@ -13,14 +13,14 @@ public class CarName {
         this.name = getValidName(name);
     }
 
-    public String getName() {
-        return name;
-    }
-
     private String getValidName(String name) {
         ValidationUtils.validStringThrowIfEmpty(name, ErrorMessage.NAME_IS_REQUIRED);
         ValidationUtils.validConditionThrowIfTrue(
                 name.length() > MAX_LENGTH, ErrorMessage.NAME_MUST_BE_FIVE_CHAR_OR_LESS);
+        return name;
+    }
+
+    public String getName() {
         return name;
     }
 

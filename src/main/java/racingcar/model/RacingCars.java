@@ -1,8 +1,8 @@
 package racingcar.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import racingcar.enums.MoveStatus;
 import racingcar.constants.ErrorMessage;
+import racingcar.enums.MoveStatus;
 import racingcar.utils.ValidationUtils;
 import racingcar.view.GameView;
 
@@ -48,14 +48,6 @@ public class RacingCars {
         }
     }
 
-    public void outputResult() {
-        for (Car car : cars) {
-            final String carName = car.carName();
-            final String distanceDash = car.getDistanceDash();
-            GameView.printMessage(carName + COLON + distanceDash);
-        }
-    }
-
     public String getFinalChampionshipCarNames() {
         final FinalChampionshipCar finalChampionshipCar = getFinalChampionshipCar();
         return finalChampionshipCar.getFinalChampionshipCarNames();
@@ -72,6 +64,14 @@ public class RacingCars {
         }
 
         return new FinalChampionshipCar(topDistance, distanceByName);
+    }
+
+    public void outputResult() {
+        for (Car car : cars) {
+            final String carName = car.carName();
+            final String distanceDash = car.getDistanceDash();
+            GameView.printMessage(carName + COLON + distanceDash);
+        }
     }
 
 }

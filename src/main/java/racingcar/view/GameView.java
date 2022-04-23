@@ -31,16 +31,16 @@ public final class GameView {
         out.println(FINAL_CHAMPIONSHIP + carNames);
     }
 
-    public static void printStartMessage() {
-        out.println(START_MESSAGE);
+    public static void println() {
+        out.println();
     }
 
     public static void printMessage(String message) {
         out.println(message);
     }
 
-    public static void println() {
-        out.println();
+    public static void printStartMessage() {
+        out.println(START_MESSAGE);
     }
 
 }
