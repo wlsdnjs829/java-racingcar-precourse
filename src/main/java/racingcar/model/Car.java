@@ -28,10 +28,14 @@ public class Car {
         }
     }
 
+    public int getDistance() {
+        return distance.getDistance();
+    }
+
     public String getDistanceDash() {
         final StringBuilder builder = new StringBuilder();
 
-        for (int repeat = 0; repeat < this.distance.getDistance(); repeat++) {
+        for (int repeat = 0; repeat < distance.getDistance(); repeat++) {
             builder.append(DASH);
         }
 

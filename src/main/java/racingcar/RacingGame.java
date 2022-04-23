@@ -28,4 +28,13 @@ public class RacingGame {
         GameView.println();
     }
 
+    public boolean ableToPlay() {
+        return !move.immovable();
+    }
+
+    public void outputFinalResult() {
+        final String finalChampionshipCarNames = cars.getFinalChampionshipCarNames();
+        GameView.printFinalResultMessage(finalChampionshipCarNames);;
+    }
+
 }

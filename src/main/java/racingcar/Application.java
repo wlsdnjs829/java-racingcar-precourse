@@ -13,7 +13,12 @@ public class Application {
     public static void main(String[] args) {
         RacingGame racingGame = getRacingGame();
         GameView.printStartMessage();
-        racingGame.start();
+
+        do {
+            racingGame.start();
+        } while (racingGame.ableToPlay());
+
+        racingGame.outputFinalResult();
     }
 
     private static RacingGame getRacingGame() {

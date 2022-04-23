@@ -7,8 +7,10 @@ import racingcar.utils.ValidationUtils;
 import racingcar.view.GameView;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class RacingCars {
 
@@ -52,6 +54,24 @@ public class RacingCars {
             final String distanceDash = car.getDistanceDash();
             GameView.printMessage(carName + COLON + distanceDash);
         }
+    }
+
+    public String getFinalChampionshipCarNames() {
+        final FinalChampionshipCar finalChampionshipCar = getFinalChampionshipCar();
+        return finalChampionshipCar.getFinalChampionshipCarNames();
+    }
+
+    private FinalChampionshipCar getFinalChampionshipCar() {
+        final AtomicInteger topDistance = new AtomicInteger();
+        final Map<String, Integer> distanceByName = new LinkedHashMap<>();
+
+        for (Car car : cars) {
+            final int distance = car.getDistance();
+            topDistance.set(Math.max(topDistance.get(), distance));
+            distanceByName.putIfAbsent(car.carName(), distance);
+        }
+
+        return new FinalChampionshipCar(topDistance, distanceByName);
     }
 
 }
