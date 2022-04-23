@@ -1,6 +1,7 @@
 package racingcar.utils;
 
 import racingcar.constants.ErrorMessage;
+import racingcar.model.Car;
 import racingcar.model.CarName;
 
 import java.util.ArrayList;
@@ -17,25 +18,26 @@ public class CarGeneratorUtils {
         throw new ClassCastException();
     }
 
-    public static List<CarName> getCarNames(String name) {
+    public static List<Car> getCars(String name) {
         ValidationUtils.validObjectThrowIfNull(name, ErrorMessage.NAME_IS_REQUIRED);
-        final Set<String> uniqueNames = getUniqueNamesThrowIfDuplicate(name);
-        final List<CarName> carNames = new ArrayList<>();
+        final String[] names = getUniqueNamesThrowIfDuplicate(name);
+        final List<Car> cars = new ArrayList<>();
 
-        for (String uniqueName : uniqueNames) {
-            carNames.add(new CarName(uniqueName));
+        for (String uniqueName : names) {
+            CarName carName = new CarName(uniqueName);
+            cars.add(new Car(carName));
         }
 
-        return carNames;
+        return cars;
     }
 
-    private static Set<String> getUniqueNamesThrowIfDuplicate(String name) {
+    private static String[] getUniqueNamesThrowIfDuplicate(String name) {
         final String[] names = name.split(REST);
         final Set<String> uniqueNames = new HashSet<>();
         Collections.addAll(uniqueNames, names);
         ValidationUtils.validConditionThrowIfTrue(
                 names.length != uniqueNames.size(), ErrorMessage.NAME_MUST_BE_UNIQUE);
-        return uniqueNames;
+        return names;
     }
 
 }

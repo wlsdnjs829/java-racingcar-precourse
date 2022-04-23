@@ -1,9 +1,9 @@
 package racingcar;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.model.Car;
 import racingcar.model.CarName;
-import racingcar.model.CarNames;
+import racingcar.model.RacingCars;
 import racingcar.utils.CarGeneratorUtils;
 
 import java.util.List;
@@ -34,18 +34,18 @@ class CarNameTest {
 
     @Test
     void 각_자동차에게_이름_부여_및_중복_체크() {
-        final List<CarName> names = CarGeneratorUtils.getCarNames("이런,안돼,중복,한다");
-        final CarNames carNames = new CarNames(names);
-        assertThat(carNames.enterCars()).isEqualTo(4);
+        final List<Car> cars = CarGeneratorUtils.getCars("이런,안돼,중복,한다");
+        final RacingCars racingCars = new RacingCars(cars);
+        assertThat(racingCars.enterCars()).isEqualTo(4);
 
-        final List<CarName> multiRestNames = CarGeneratorUtils.getCarNames("이런,안돼,,");
-        final CarNames multiCarNames = new CarNames(multiRestNames);
-        assertThat(multiCarNames.enterCars()).isEqualTo(2);
+        final List<Car> multiRestCars = CarGeneratorUtils.getCars("이런,안돼,,");
+        final RacingCars multiCars = new RacingCars(multiRestCars);
+        assertThat(multiCars.enterCars()).isEqualTo(2);
 
-        final ThrowingCallable duplicateCase = () -> CarGeneratorUtils.getCarNames("이런,이런");
+        final ThrowingCallable duplicateCase = () -> CarGeneratorUtils.getCars("이런,이런");
         assertThatThrownBy(duplicateCase).isInstanceOf(IllegalArgumentException.class);
 
-        final ThrowingCallable nullCase = () -> CarGeneratorUtils.getCarNames(null);
+        final ThrowingCallable nullCase = () -> CarGeneratorUtils.getCars(null);
         assertThatThrownBy(nullCase).isInstanceOf(IllegalArgumentException.class);
     }
 

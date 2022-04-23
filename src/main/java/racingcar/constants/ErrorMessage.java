@@ -16,5 +16,6 @@ public final class ErrorMessage {
     public static final String MUST_HAVE_A_COUNT_TO_MOVE = "[ERROR] 이동하기 위해선 횟수가 있어야 합니다.";
 
     public static final String MOVE_STATUS_NUMBER_MUST_BE_ALLOWED_RANGE = "[ERROR] 이동상태 입력 값은 특정 범위만 허용합니다.";
+    public static final String MOVE_STATUS_MAP_IS_REQUIRED = "[ERROR] 이동상태 맵은 필수 값입니다.";
 
 }

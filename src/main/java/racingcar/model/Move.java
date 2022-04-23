@@ -4,6 +4,9 @@ import racingcar.MoveStatus;
 import racingcar.constants.ErrorMessage;
 import racingcar.utils.ValidationUtils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Move {
 
     private static final int LEAST_RANGE = 0;
@@ -37,11 +40,34 @@ public class Move {
         return moves;
     }
 
-    public MoveStatus moveStatus(int randomNumber) {
+    public boolean immovable() {
+        return moves < NUMBER_OF_MOVES_ONE_TIME;
+    }
+
+    public Map<String, MoveStatus> moveStatus(Map<String, Integer> randomNumberMapByName) {
+        final Map<String, MoveStatus> moveStatusMapByName = getMoveStatusMap(randomNumberMapByName);
+        this.moves -= NUMBER_OF_MOVES_ONE_TIME;
+        return moveStatusMapByName;
+    }
+
+    private Map<String, MoveStatus> getMoveStatusMap(Map<String, Integer> randomNumberMapByName) {
+        final Map<String, MoveStatus> moveStatusMapByName = new HashMap<>();
+
+        for (Map.Entry<String, Integer> entry : randomNumberMapByName.entrySet()) {
+            String name = entry.getKey();
+            Integer randomNumber = entry.getValue();
+            final MoveStatus moveStatus = getMoveStatus(randomNumber);
+            moveStatusMapByName.putIfAbsent(name, moveStatus);
+        }
+
+        return moveStatusMapByName;
+    }
+
+    private MoveStatus getMoveStatus(Integer randomNumber) {
+        ValidationUtils.validObjectThrowIfNull(randomNumber, ErrorMessage.MOVE_MUST_BE_NUMBER);
         ValidationUtils.validConditionThrowIfTrue(randomNumber < LEAST_RANGE || randomNumber > MAXIMUM_RANGE,
                 ErrorMessage.MOVE_STATUS_NUMBER_MUST_BE_ALLOWED_RANGE);
         ValidationUtils.validConditionThrowIfTrue(this.moves < 1, ErrorMessage.MUST_HAVE_A_COUNT_TO_MOVE);
-        this.moves -= NUMBER_OF_MOVES_ONE_TIME;
 
         if (randomNumber < MOVE_LEAST_RANGE) {
             return MoveStatus.STAY;
