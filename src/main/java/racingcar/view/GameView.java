@@ -6,10 +6,9 @@ import static java.lang.System.out;
 
 public final class GameView {
 
-    private static final String CLEAR_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! ";
-    private static final String CHOICE_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
-    private static final String ENTER_DIGITS = "숫자를 입력해주세요 : ";
-    private static final String GAME_END_MESSAGE = "게임 종료";
+    private static final String ENTER_CAR_NAMES = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분";
+    private static final String ENTER_TRY_NUMBER = "시도할 회수는 몇회인가요?";
+    private static final String START_MESSAGE = "실행 결과";
 
     private GameView() {
         throw new ClassCastException();
@@ -19,16 +18,16 @@ public final class GameView {
         return Console.readLine();
     }
 
-    public static void printEnterDigitsMessage() {
-        out.print(ENTER_DIGITS);
+    public static void printEnterCarNames() {
+        out.print(ENTER_CAR_NAMES);
     }
 
-    public static void printChoiceMessage() {
-        out.println(CHOICE_MESSAGE);
+    public static void printEnterTryNumber() {
+        out.print(ENTER_TRY_NUMBER);
     }
 
-    public static void printClearAndEndMessage() {
-        out.println(CLEAR_MESSAGE + GAME_END_MESSAGE);
+    public static void printStartMessage() {
+        out.println(START_MESSAGE);
     }
 
     public static void printMessage(String message) {

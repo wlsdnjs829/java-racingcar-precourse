@@ -3,9 +3,8 @@ package racingcar;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.model.Car;
-import racingcar.model.CarName;
-import racingcar.model.RacingCars;
 import racingcar.model.Move;
+import racingcar.model.RacingCars;
 import racingcar.utils.CarGeneratorUtils;
 
 import java.io.ByteArrayOutputStream;
@@ -15,7 +14,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RacingGameTest {
+class RacingGameTest {
 
     private RacingGame racingGame;
     private OutputStream captor;
