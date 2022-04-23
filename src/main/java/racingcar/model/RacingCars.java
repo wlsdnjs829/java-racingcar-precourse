@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static java.lang.Math.*;
+
 public class RacingCars {
 
     private static final String COLON = " : ";
@@ -59,7 +61,7 @@ public class RacingCars {
 
         for (Car car : cars) {
             final int distance = car.getDistance();
-            topDistance.set(Math.max(topDistance.get(), distance));
+            topDistance.set(max(topDistance.get(), distance));
             distanceByName.putIfAbsent(car.carName(), distance);
         }
 

@@ -29,7 +29,7 @@ public class RacingGame {
     }
 
     public void start() {
-        ValidationUtils.validConditionThrowIfTrue(move.immovable(), ErrorMessage.MUST_HAVE_A_COUNT_TO_MOVE);
+        ValidationUtils.validConditionThrowIfTrue(!ableToPlay(), ErrorMessage.MUST_HAVE_A_COUNT_TO_MOVE);
         final Map<String, Integer> movableNumberMap = cars.getMovableNumberMap();
         final Map<String, MoveStatus> moveStatusMap = move.moveStatus(movableNumberMap);
         cars.moveCar(moveStatusMap);
