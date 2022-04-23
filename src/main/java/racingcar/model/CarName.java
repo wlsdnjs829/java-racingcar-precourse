@@ -1,13 +1,11 @@
 package racingcar.model;
 
 import racingcar.constants.ErrorMessage;
-
-import java.util.Objects;
+import racingcar.utils.ValidationUtils;
 
 public class CarName {
 
     private static final int MAX_LENGTH = 5;
-    private static final String EMPTY = "";
 
     private final String name;
 
@@ -15,15 +13,15 @@ public class CarName {
         this.name = getValidName(name);
     }
 
+    public String getName() {
+        return name;
+    }
+
     private String getValidName(String name) {
-        if (Objects.isNull(name) || EMPTY.equalsIgnoreCase(name)) {
-            throw new IllegalArgumentException(ErrorMessage.NAME_IS_REQUIRED);
-        }
+        ValidationUtils.validStringThrowIfEmpty(name, ErrorMessage.NAME_IS_REQUIRED);
 
-        if (name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException(ErrorMessage.NAME_MUST_BE_FIVE_CHAR_OR_LESS);
-        }
-
+        boolean overMaxLength = name.length() > MAX_LENGTH;
+        ValidationUtils.validConditionThrowIfTrue(overMaxLength, ErrorMessage.NAME_MUST_BE_FIVE_CHAR_OR_LESS);
         return name;
     }
 
