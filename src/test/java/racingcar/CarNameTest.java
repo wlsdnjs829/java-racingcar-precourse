@@ -34,18 +34,18 @@ class CarNameTest {
 
     @Test
     void 각_자동차에게_이름_부여_및_중복_체크() {
-        final List<CarName> names = CarGeneratorUtils.getCarNames("이런,바보,중복,한다");
+        final List<CarName> names = CarGeneratorUtils.getCarNames("이런,안돼,중복,한다");
         final CarNames carNames = new CarNames(names);
         assertThat(carNames.enterCars()).isEqualTo(4);
 
-        final List<CarName> multiRestNames = CarGeneratorUtils.getCarNames("이런,바보,,");
+        final List<CarName> multiRestNames = CarGeneratorUtils.getCarNames("이런,안돼,,");
         final CarNames multiCarNames = new CarNames(multiRestNames);
         assertThat(multiCarNames.enterCars()).isEqualTo(2);
 
-        ThrowingCallable duplicateCase = () -> CarGeneratorUtils.getCarNames("이런,이런");
+        final ThrowingCallable duplicateCase = () -> CarGeneratorUtils.getCarNames("이런,이런");
         assertThatThrownBy(duplicateCase).isInstanceOf(IllegalArgumentException.class);
 
-        ThrowingCallable nullCase = () -> CarGeneratorUtils.getCarNames(null);
+        final ThrowingCallable nullCase = () -> CarGeneratorUtils.getCarNames(null);
         assertThatThrownBy(nullCase).isInstanceOf(IllegalArgumentException.class);
     }
 
