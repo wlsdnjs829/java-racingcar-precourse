@@ -19,9 +19,8 @@ public class CarName {
 
     private String getValidName(String name) {
         ValidationUtils.validStringThrowIfEmpty(name, ErrorMessage.NAME_IS_REQUIRED);
-
-        final boolean overMaxLength = name.length() > MAX_LENGTH;
-        ValidationUtils.validConditionThrowIfTrue(overMaxLength, ErrorMessage.NAME_MUST_BE_FIVE_CHAR_OR_LESS);
+        ValidationUtils.validConditionThrowIfTrue(
+                name.length() > MAX_LENGTH, ErrorMessage.NAME_MUST_BE_FIVE_CHAR_OR_LESS);
         return name;
     }
 

@@ -33,9 +33,8 @@ public class CarGeneratorUtils {
         final String[] names = name.split(REST);
         final Set<String> uniqueNames = new HashSet<>();
         Collections.addAll(uniqueNames, names);
-
-        boolean isUnique = names.length != uniqueNames.size();
-        ValidationUtils.validConditionThrowIfTrue(isUnique, ErrorMessage.NAME_MUST_BE_UNIQUE);
+        ValidationUtils.validConditionThrowIfTrue(
+                names.length != uniqueNames.size(), ErrorMessage.NAME_MUST_BE_UNIQUE);
         return uniqueNames;
     }
 
