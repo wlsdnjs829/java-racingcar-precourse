@@ -1,9 +1,11 @@
 package racingcar;
 
 import racingcar.constants.ErrorMessage;
+import racingcar.enums.MoveStatus;
 import racingcar.model.RacingCars;
 import racingcar.model.Move;
 import racingcar.utils.ValidationUtils;
+import racingcar.view.GameView;
 
 import java.util.Map;
 
@@ -23,6 +25,7 @@ public class RacingGame {
         final Map<String, MoveStatus> moveStatusMap = move.moveStatus(movableNumberMap);
         cars.moveCar(moveStatusMap);
         cars.outputResult();
+        GameView.println();
     }
 
 }

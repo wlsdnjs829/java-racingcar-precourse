@@ -1,6 +1,7 @@
 package racingcar;
 
 import org.junit.jupiter.api.Test;
+import racingcar.enums.MoveStatus;
 import racingcar.model.Move;
 
 import java.util.HashMap;

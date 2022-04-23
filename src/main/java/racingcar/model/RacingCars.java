@@ -1,7 +1,7 @@
 package racingcar.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import racingcar.MoveStatus;
+import racingcar.enums.MoveStatus;
 import racingcar.constants.ErrorMessage;
 import racingcar.utils.ValidationUtils;
 import racingcar.view.GameView;

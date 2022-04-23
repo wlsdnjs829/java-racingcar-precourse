@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.enums;
 
 public enum MoveStatus {
 

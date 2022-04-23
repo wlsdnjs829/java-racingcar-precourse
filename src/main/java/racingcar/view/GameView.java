@@ -34,4 +34,8 @@ public final class GameView {
         out.println(message);
     }
 
+    public static void println() {
+        out.println();
+    }
+
 }

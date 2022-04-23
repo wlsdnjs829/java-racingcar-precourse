@@ -1,6 +1,6 @@
 package racingcar.model;
 
-import racingcar.MoveStatus;
+import racingcar.enums.MoveStatus;
 import racingcar.constants.ErrorMessage;
 import racingcar.utils.ValidationUtils;
 
